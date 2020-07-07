@@ -7,9 +7,9 @@ class Migration extends \yii\db\Migration
 
     public $tableName;
 
-    public $keyPrefix;
+    public $foreignKeyPrefix;
 
-    public $keySuffix;
+    public $foreignKeySuffix;
 
     public $indexPrefix;
 
@@ -17,19 +17,19 @@ class Migration extends \yii\db\Migration
 
     public $defaultMysqlOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
 
-    public function getCreatedColumn()
+    public function created()
     {
         return $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP');
     }
 
-    public function getBooleanColumn($defaultValue = 0)
+    public function boolean($defaultValue = 0)
     {
         return $this->tinyInteger()->unsigned()->notNull()->defaultValue($defaultValue);
     }
 
-    public function getKeyName($name)
+    public function getForeignKeyName($name)
     {
-        return $this->keyPrefix . $name . $this->keySuffix;
+        return $this->foreignKeyPrefix . $name . $this->foreignKeySuffix;
     }
 
     public function getIndexName($name)
