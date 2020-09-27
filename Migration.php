@@ -39,12 +39,12 @@ class Migration extends \yii\db\Migration
         return $this->tinyInteger()->unsigned()->notNull()->defaultValue($defaultValue);
     }
 
-    public function getForeignKeyName($name)
+    public function foreignKeyName($name)
     {
         return $this->foreignKeyPrefix . $name . $this->foreignKeySuffix;
     }
 
-    public function getIndexName($name)
+    public function indexName($name)
     {
         return $this->indexPrefix . $name . $this->indexSuffix;
     }
