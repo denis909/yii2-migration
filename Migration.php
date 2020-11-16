@@ -22,16 +22,16 @@ class Migration extends \yii\db\Migration
         return $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP');
     }
 
-    public function updated($defaultCurrentTimestamp = false)
+    public function updated($currentTimestamp = false)
     {
         $return = $this->timestamp()->notNull()->append('ON UPDATE CURRENT_TIMESTAMP');
 
-        if ($defaultCurrentTimestamp)
+        if ($currentTimestamp)
         {
             return $return->defaultExpression('CURRENT_TIMESTAMP');
         }
     
-        return $return;
+        return $return->defaultValue(null);
     }
 
     public function boolean($defaultValue = 0)
