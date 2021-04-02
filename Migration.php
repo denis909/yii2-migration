@@ -62,16 +62,6 @@ class Migration extends \yii\db\Migration
         return parent::createTable($table, $columns, $options);
     }
 
-    public function createIndex($name, $table, $columns, $unique = false, bool $prepareName = false)
-    {
-        if ($prepareName)
-        {
-            $name = $this->indexName($name);
-        }
-
-        return parent::createIndex($name, $table, $columns, $unique);
-    }
-
     public function addForeignKey($name, $table, $columns, $refTable, $refColumns, $delete = null, $update = null, bool $prepareName = false)
     {
         if ($prepareName)
@@ -79,7 +69,7 @@ class Migration extends \yii\db\Migration
             $name = $this->foreignKeyName($name);
         }
 
-        return parent::addForeignKey($name, $table, $column, $refTable, $refColumns, $delete, $update);
+        return parent::addForeignKey($name, $table, $columns, $refTable, $refColumns, $delete, $update);
     }
 
     public function dropForeignKey($name, $table, bool $prepareName = false)
@@ -90,6 +80,16 @@ class Migration extends \yii\db\Migration
         }
 
         return parent::dropForeignKey($name, $table);
+    }
+
+    public function createIndex($name, $table, $columns, $unique = false, bool $prepareName = false)
+    {
+        if ($prepareName)
+        {
+            $name = $this->indexName($name);
+        }
+
+        return parent::createIndex($name, $table, $columns, $unique);
     }
 
     public function dropIndex($name, $table, bool $prepareName = false)
